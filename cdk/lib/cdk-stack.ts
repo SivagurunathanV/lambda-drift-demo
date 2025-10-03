@@ -26,6 +26,7 @@ export class CdkStack extends Stack {
             description: 'A Lambda function that logs a json file sent to S3 bucket.',
             handler: 'src/handlers/s3-json-logger.s3JsonLoggerHandler',
             runtime: lambda.Runtime.NODEJS_22_X,
+            memorySize: 128, // Set to recommended 128MB as it's sufficient for JSON logging
             code: lambda.Code.fromBucket(
                 s3.Bucket.fromBucketName(this, 'ArtifactBucket', artifactBucket),
                 artifactKey,
