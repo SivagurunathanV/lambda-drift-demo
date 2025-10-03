@@ -30,6 +30,9 @@ export class CdkStack extends Stack {
                 s3.Bucket.fromBucketName(this, 'ArtifactBucket', artifactBucket),
                 artifactKey,
             ),
+            memorySize: 128,
+            timeout: lambda.Duration.seconds(3),
+            ephemeralStorageSize: lambda.Size.mebibytes(512),
             events: [
                 new S3EventSource(
                     bucket,
